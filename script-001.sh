@@ -1,3 +1,3 @@
 #!/bin/bash
 
-mzram 2G
+mzram 6G
