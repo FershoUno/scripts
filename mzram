@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Verifica si se proporciona un argumento para el tamaño del zram
+if [ -z "$1" ]; then
+    echo "Error: Especifica el tamaño del zram (por ejemplo, 2G o 1024M)"
+    exit 1
+fi
+
+# Tamaño del zram proporcionado como argumento
+SIZE="$1"
+
+# Desactiva y reinicia el dispositivo zram
+swapoff /dev/zram0
+zramctl --reset /dev/zram0
+
+# Configura el tamaño del zram
+zramctl --find --size "$SIZE" > /dev/null
+
+# Formatea el zram y lo activa
+mkswap /dev/zram0
+swapon /dev/zram0
