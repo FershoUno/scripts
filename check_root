@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Comprobar si el script se está ejecutando como root
+if [ "$EUID" -ne 0 ]; then
+  echo "Este script debe ejecutarse como root. Por favor, ejecuta con sudo o como root."
+  exit 1
+else
+  echo "Eres root. Continuando con la ejecución..."
+fi
+
+# Aquí puedes agregar el resto del script
