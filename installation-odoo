@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+apt update
+apt install -y wget gpg postgresql
+
+wget -q -O - https://nightly.odoo.com/odoo.key | gpg --dearmor -o /usr/share/keyrings/odoo-archive-keyring.gpg
+echo 'deb [signed-by=/usr/share/keyrings/odoo-archive-keyring.gpg] https://nightly.odoo.com/14.0/nightly/deb/ ./' | tee /etc/apt/sources.list.d/odoo.list
+apt update && apt install  -y odoo
+
+ wget -q --show-progress https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.jammy_amd64.deb
+ apt install ./wkhtmltox_0.12.6.1-3.jammy_amd64.deb -y
+ rm -f wkhtmltox_0.12.6.1-3.jammy_amd64.deb
+
+EXPOSE 8069
